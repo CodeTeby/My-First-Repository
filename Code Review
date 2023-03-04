@@ -1,0 +1,40 @@
+
+
+#Line 5, unindent does not match any outer indentation level, try placing the line ahead of line 6.
+
+#Line 7, has runtime error, do add the counter.
+
+#The code seems to be conscise, no confusion. Which is a good thing.
+
+#You used loops to repeat actions, which makes it efficient and fast.
+
+#The structure of the code is proper for a python code.
+
+#Please include documentation of your code next time for readability, reproducibility,and usability.
+
+/**Group anagrams together
+
+    Return the answer in any order
+    Strings consists of lowercase Enligh letters */
+
+Class Solution //Group the anagrams together def groupAnagrams(self, strs):
+
+  result = {}
+  
+  for i in strs:
+  
+     x = "".join(sorted(i))
+     
+     if x in result:
+     
+        result[x].append(i)
+        
+     else:
+     
+        result[x] = [i]
+        
+  return list(result.values())
+
+ob1 = Solution()
+
+print(ob1.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))

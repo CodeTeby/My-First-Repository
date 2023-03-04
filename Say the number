@@ -1,0 +1,61 @@
+/**
+ *
+ * Create a function that takes a numeral
+ * Return the Standard way of reading a number
+ * 
+ */
+
+public class SayTheNumber {
+
+    
+    //The numbers which the word will be extracted from
+    
+    private static String[] less_than_twenty ={"", "One", "Two", "Three", "Four", 
+        "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen",
+        "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty" };
+    
+    private static String[] tens ={"","" , "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninenty",};
+    
+    private static String[] chunks ={"","Thousand", "Million", "Billion", "Trillion" };
+    
+    //Input the number
+    
+    public static String sayNumber(long num){
+    if(num ==0) return "Zero.";
+    
+    String answer =new String();
+    
+    int index = 0;
+    while(num>0){
+        if(num%1000!=0){
+        answer = convertThreeDigit(num%100) + chunks[index] + "," + answer;
+    }
+    index++;
+    num/=1000;
+    }
+     return answer.trim().substring(0, answer.length()-3)+".";
+    }
+       
+     //The function receives 3 digit number and builds the string
+     private static String convertThreeDigit(long num){
+         if(num==0) return "";
+         if (num<20) return less_than_twenty[(int)num] +"";
+         
+         else if(num<100) return tens[(int)num/10] +" " +convertThreeDigit(num%10);
+         
+         else return less_than_twenty[(int)num/100]+" "+"Hundred"+""+convertThreeDigit(num%100);
+         
+     }
+     //Class to test inputs
+    public static void main(String[] args) {
+        long no1 =0;
+        long no2 = 15;
+        long no3 = 137689247;
+        
+        System.out.println(sayNumber(no1)+"\n"+sayNumber(2)+"\n"+sayNumber(no3));
+        
+    }
+    
+    
+    
+}
